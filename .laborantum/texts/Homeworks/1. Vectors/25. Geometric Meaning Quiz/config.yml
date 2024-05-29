@@ -1,0 +1,50 @@
+type: choose_any
+header: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+  - text: |
+      If $\mathbf x_1, \mathbf x_2 \in \mathbb R^N, 
+      |\mathbf x_1| > |\mathbf x_2|$ and 
+      $\frac{\mathbf x_1}{|\mathbf x_1|} = \frac{\mathbf x_2}{|\mathbf x_2|}$, 
+      then $\forall \mathbf y \in \mathbb R^N \Rightarrow
+      \left<\mathbf x_1, \mathbf y\right> > \left<\mathbf x_2, \mathbf y\right>$
+    is_correct: false
+  - text: |
+      If $\mathbf x_1, \mathbf x_2 \in \mathbb R^N, 
+      |\mathbf x_1| > |\mathbf x_2|$ and 
+      $\frac{\mathbf x_1}{|\mathbf x_1|} = \frac{\mathbf x_2}{|\mathbf x_2|}$, 
+      then $\forall \mathbf y \in \mathbb R^N \Rightarrow
+      |\left<\mathbf x_1, \mathbf y\right>| > 
+      |\left<\mathbf x_2, \mathbf y\right>|$
+    is_correct: false
+  - text: |
+      If $\mathbf x_1, \mathbf x_2 \in \mathbb R^N, 
+      |\mathbf x_1| > |\mathbf x_2|$ and 
+      $\frac{\mathbf x_1}{|\mathbf x_1|} = \frac{\mathbf x_2}{|\mathbf x_2|}$, 
+      then $\forall \mathbf y \in \mathbb R^N \Rightarrow
+      |\left<\mathbf x_1, \mathbf y\right>| \geq 
+      |\left<\mathbf x_2, \mathbf y\right>|$
+    is_correct: true
+  - text: |
+      Scalar product is symmetric, that means that swapping $\mathbf x$ and 
+      $\mathbf y$ does not change the result: 
+      $\left<\mathbf x, \mathbf y\right> = \left<\mathbf y, \mathbf x\right>$
+    is_correct: true
+  - text: |
+      When the $\angle(\mathbf x, \mathbf y)$ grows and is in the interval
+      $(0, \pi)$, the scalar product between the vectors 
+      $\left<\mathbf x, \mathbf y\right>$ decreases
+    is_correct: false
+  - text: |
+      When the length of any vector is increased, the abslute value of the 
+      scalar product cannot decrease
+    is_correct: true
+  - text: |
+      Scalar product is equal to the length of one vector
+      $|\mathbf x|$
+      times length of the parallel component of another vector to the
+      first one $|\mathbf y_{\parallel \mathbf x}|$
+    is_correct: true

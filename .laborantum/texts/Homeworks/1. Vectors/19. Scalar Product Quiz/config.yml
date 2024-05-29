@@ -1,0 +1,31 @@
+type: choose_any
+header: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+  - text: All the vectors $\mathbf x$ such that $\left<\mathbf x, \mathbf a\right>
+      = 0$ are orthogonal to the vector $\mathbf a$
+    is_correct: true
+  - text: All the vectors $\mathbf x$ such that $\left<\mathbf x, \mathbf a\right>
+      = 0$ in 2D space form a straight line parallel to $\mathbf a$
+    is_correct: false
+  - text: If we take two vectors $\mathbf x$ and $\mathbf y$, for which $\left<\mathbf
+      x, \mathbf a\right> = 0$ and $\left<\mathbf y, \mathbf a\right> = 0$, then for
+      $\mathbf z = \alpha \mathbf x + \beta \mathbf y$ the orthogonality holds $\left<\mathbf
+      z, \mathbf a\right> = 0$
+    is_correct: true
+  - text: Scalar product between two unit vectors is always equal to sinus between
+      these vectors
+    is_correct: false
+  - text: Scalar product can be negative
+    is_correct: true
+  - text: Scalar product of a vector with itself $\left<\mathbf x, \mathbf x\right>$
+      can be negative
+    is_correct: false
+  - text: We can calculate a scalar product only with vectors in the same vector space
+    is_correct: true
+  - text: Scalar product is equal to zero if and only if length of one of the vectors
+      is zero.
+    is_correct: false

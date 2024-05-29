@@ -1,0 +1,1 @@
+{"task1": {"__ndarray__": [-6], "dtype": "int64", "shape": [1]}, "task2": {"__ndarray__": [-4, -3], "dtype": "int64", "shape": [2]}, "task3": {"__ndarray__": [2, 5, 4], "dtype": "int64", "shape": [3]}, "task4": {"__ndarray__": [2, 4, -4, 3, -2, 6, 3, 2, 1], "dtype": "int64", "shape": [9]}}

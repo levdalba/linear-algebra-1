@@ -1,0 +1,26 @@
+type: choose_any
+header: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+  - text: $\forall \alpha \in \mathbb{R} \quad |\alpha \mathbf x| = \alpha |\mathbf
+      x|$
+    is_correct: false
+  - text: $\forall \alpha \geq 0 \quad |\alpha \mathbf x| = \alpha |\mathbf x|$
+    is_correct: true
+  - text: $\forall \alpha \in \mathbb{R} \quad |\alpha \mathbf x| = |\alpha| |\mathbf
+      x|$
+    is_correct: true
+  - text: $\forall \alpha < 0 \quad |\alpha \mathbf x| = - \alpha |\mathbf x|$
+    is_correct: true
+  - text: $\forall \alpha < 0 \quad \frac{\alpha \mathbf x}{|\alpha \mathbf x|} =
+      - \frac{\mathbf x}{|\mathbf x|}$
+    is_correct: true
+  - text: $\forall \alpha \in \mathbb{R} \quad \frac{\alpha \mathbf x}{|\alpha \mathbf
+      x|} = \frac{\mathbf x}{|\mathbf x|}$
+    is_correct: false
+  - text: $\forall \alpha > 0 \quad \frac{\alpha \mathbf x}{|\alpha \mathbf x|} =
+      \frac{\mathbf x}{|\mathbf x|}$
+    is_correct: true

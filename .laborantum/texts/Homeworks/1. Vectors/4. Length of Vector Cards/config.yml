@@ -1,0 +1,14 @@
+type: order_cards
+header: ''
+text: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+    - text: Take $\mathbf x_{N} \in \mathbb R^N$
+    - text: $|\mathbf x_{N}| = \sqrt{x_N^2 + |\mathbf x_{N-1}|^2}$
+    - text: $|\mathbf x_{N-1}| = \sqrt{x_{N-1}^2 + |\mathbf x_{N-2}|^2}$
+    - text: Repeat until you get $|\mathbf x_2|$
+    - text: $|\mathbf x_2| = \sqrt{x_1^2 + x_2^2}$
+    - text: Collecting it all, we get $|\mathbf x_N| = \sqrt{\sum_{k=1}^N x_k^2} = \sqrt{x_1^2 + x_2^2 + x_3^2 + \dots + x_N^2}$

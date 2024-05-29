@@ -1,0 +1,10 @@
+type: code
+max_score: 1
+code: 
+  - .laborantum/texts/Homeworks/1. Vectors/33. Exercise Vectors 3/task.ipynb
+run_test: 
+  - >
+    ipython .laborantum/utils/python_struct_checker.py --
+    -t ".laborantum/texts/Homeworks/1. Vectors/33. Exercise Vectors 3/"
+report_path:
+  .laborantum/reports/Homeworks/1. Vectors/33. Exercise Vectors 3/report.json

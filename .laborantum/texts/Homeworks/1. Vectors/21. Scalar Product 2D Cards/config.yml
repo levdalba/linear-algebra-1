@@ -1,0 +1,44 @@
+type: order_cards
+header: ''
+text: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+    - text: |
+        $\forall \mathbf x, \mathbf y \in \mathbb R^2: \left<\mathbf x, \mathbf y\right> = x_1 x_2 + y_1 y_2$
+    - text: |
+        $y_1 = |\mathbf y| \cos(\phi)$,
+
+        $y_2 = |\mathbf y| \sin(\phi)$,
+
+        $x_1 = |\mathbf x| \cos(\phi + \theta)$,
+        
+        $x_2 = |\mathbf x| \sin(\phi + \theta)$
+
+        And
+        
+        $\cos(\phi + \theta) = \cos \phi \cos \theta - \sin \phi \sin \theta$,
+        
+        $\sin(\phi + \theta) = \sin \phi \cos \theta + \cos \phi \sin \theta$
+    - text: |
+        Substituting $x_1, x_2, y_1, y_2$, we get 
+        
+        $\left<\mathbf x, \mathbf y\right> = x_1 y_1 + x_2 y_2 = $
+        
+        $= |\mathbf x| \cos(\phi + \theta) |\mathbf y| \sin(\phi) + |\mathbf y| \cos(\phi) |\mathbf x| \sin(\phi + \theta)$
+    - text: |
+        Substituting $\cos(\phi + \theta)$ and $\sin(\phi + \theta)$, we get
+        
+        $|\mathbf x||\mathbf y|(\cos^2 \phi \cos \theta - \cos \phi \sin \phi \sin \theta + \sin^2 \phi \cos \theta + \sin \phi \cos \phi \sin \theta)$
+    - text: |
+        $\cos \phi \sin \phi \sin \theta$ is cancelled, and we get
+        
+        $|\mathbf x||\mathbf y| \cos \theta (\sin^2 \phi + \sin^2 \phi)$
+    - text: |
+        Due to $\forall \phi \ \sin^2 \phi + \sin^2 \phi = 1$, we get
+        
+        $|\mathbf x| |\mathbf y| \cos \theta$
+    - text:
+        Done

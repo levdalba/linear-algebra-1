@@ -1,0 +1,10 @@
+type: code
+max_score: 1
+code: 
+  - .laborantum/texts/Homeworks/1. Vectors/13. Sum of Vectors Numpy Vectorized/task.ipynb
+run_test: 
+  - >
+    ipython .laborantum/utils/python_struct_checker.py --
+    -t ".laborantum/texts/Homeworks/1. Vectors/13. Sum of Vectors Numpy Vectorized/"
+report_path:
+  .laborantum/reports/Homeworks/1. Vectors/13. Sum of Vectors Numpy Vectorized/report.json

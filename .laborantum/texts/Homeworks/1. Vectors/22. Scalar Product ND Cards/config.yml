@@ -1,0 +1,50 @@
+type: order_cards
+header: ''
+text: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+    - text: |
+        Select $\forall \mathbf x, \mathbf y \in \mathbb R^N$
+    - text: |
+        The first definition of scalar product is:
+
+        $\left<\mathbf x, \mathbf y\right> = x_1 y_1 + x_2 y_2 + x_3 y_3 + \dots + x_N y_N$
+    - text: |
+        Split the scalar product definition as:
+
+        $\left<\mathbf x, \mathbf y\right> = \underbrace{x_1 y_1 + x_2 y_2}_{2D \ case} + x_3 y_3 + \dots + x_N y_N$
+    - text: |
+        Rotate the vectors $\left[x_1, x_2\right]$ and $\left[y1, y2\right]$ 
+        so that $x_2$ becomes $0$ after rotation.
+      
+        Scalar product value remains the same after that as the value of 
+        $x_1 y_1 + x_2 y_2$
+        does not change after rotation and the other part is not touched.
+    - text: |
+        Select now $[x_1, x_3]$ as a $2$-dimensional subvector. Perform rotation
+        of the vectors $\left[x_1, x_2\right]$ and $\left[y1, y2\right]$ so that
+        $x_3 = 0$.
+
+        The scalar product does not change.
+    
+    - text: |
+        Perform this procedure for all the coordinates up to $N$-th
+
+    - text: |
+        In the end we will have $\left<\mathbf x, \mathbf y\right> = x_1 y_1$ as
+        all $x_2, x_3, \dots, x_N$ are equal to $0$.
+    
+    - text: |
+        $x_1 = |\mathbf x|$ as $\mathbf x$ is now aligned with $1$ dimension
+
+        $y_1 = |\mathbf y| \cos \theta$
+
+    - text: |
+        Hence, 
+        
+        $\left<\mathbf x, \mathbf y\right> = |\mathbf x||\mathbf y| \cos \theta,$
+
+        where $\theta$ is $\angle(\mathbf x, \mathbf y)$

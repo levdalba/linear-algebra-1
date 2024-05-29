@@ -1,0 +1,25 @@
+type: order_cards
+header: ''
+text: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+    - text: Take the first vector $\mathbf x_1$
+    - text: |
+        Normalise it and add to the new system of vectors 
+        $$\mathbf x_1^* = \frac{\mathbf x_1}{|\mathbf x_1|}$$
+    - text: |
+        Take the next vector $\mathbf x_2$
+    - text: |
+        Remove from it all colinear components with the vectors that are already
+        in the system making the new vector orthogonal to all of them:
+
+        $$\mathbf x_2^* = \mathbf x_2 - \left<\mathbf x_2, \mathbf x_1^*\right> 
+        \mathbf x_1^*$$
+    - text: |
+        Normalise the result:
+        $$\mathbf x_2^* = \frac{\mathbf x_2^*}{|\mathbf x_2^*|}$$
+    - text: |
+        Repeat previous 3 steps for the remaining vectors in the original system

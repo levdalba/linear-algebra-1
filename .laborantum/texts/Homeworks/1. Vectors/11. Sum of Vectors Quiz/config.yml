@@ -1,0 +1,29 @@
+type: choose_any
+header: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+  - text: $$ \mathbf c = \mathbf a + \mathbf b $$
+    is_correct: false
+  - text: $$\mathbf b = \mathbf c - \mathbf a$$
+    is_correct: false
+  - text: $$\mathbf c = \mathbf a - \mathbf b$$
+    is_correct: false
+  - text: $$\mathbf c = \mathbf b - \mathbf a$$
+    is_correct: true
+  - text: $$\mathbf b - \mathbf a - \mathbf c = \mathbf 0$$
+    is_correct: true
+  - text: $$\mathbf b - \mathbf a - \mathbf c = 0$$
+    is_correct: false
+  - text: >
+      $$\forall \mathbf a \in \mathbb{R}^N, \mathbf c \in \mathbb{R}^N; \ \textrm{and}
+      \ \mathbf b = \mathbf a + \mathbf c \Rightarrow |\mathbf b| \leq |\mathbf a|
+      + |\mathbf c|$$
+    is_correct: true
+  - text: >
+      $$\forall \mathbf a \in \mathbb{R}^N, \mathbf c \in \mathbb{R}^N; \ \textrm{and}
+      \ \mathbf b = \mathbf a + \mathbf c \Rightarrow \frac{\mathbf b}{|\mathbf b|}
+      \neq \frac{\mathbf a}{|\mathbf a|}$$
+    is_correct: false

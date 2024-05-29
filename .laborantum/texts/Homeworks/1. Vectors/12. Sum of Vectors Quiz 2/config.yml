@@ -1,0 +1,26 @@
+type: choose_any
+header: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+  - text: $\sum_{k=1}^{10} \mathbf a_k = \mathbf 0$
+    is_correct: true
+  - text: $\mathbf a_{10} = - \mathbf a_9 + \mathbf a_8$
+    is_correct: false
+  - text: $\mathbf a_1 = - \sum_{k = 2}^{10} \mathbf a_k$
+    is_correct: true
+  - text: $\left|\mathbf \sum_{k=1}^5 \mathbf a_k \right| = \left|\sum_{k=6}^{10}
+      \mathbf a_k\right|$
+    is_correct: true
+  - text: $\left|\mathbf \sum_{k=1}^5 \mathbf a_k \right| = 0$
+    is_correct: false
+  - text: $\left|\mathbf \sum_{k=1}^{10} \mathbf a_k \right| = 0$
+    is_correct: true
+  - text: $\left|\mathbf \sum_{k=1}^{10} \mathbf a_k \right| = \mathbf 0$
+    is_correct: false
+  - text: $\frac{\mathbf \sum_{k=1}^5 \mathbf a_k}{\left|\mathbf \sum_{k=1}^5 \mathbf
+      a_k\right|} = - \frac{\sum_{k=6}^{10} \mathbf a_k}{\left|\sum_{k=6}^{10} \mathbf
+      a_k \right|}$
+    is_correct: true
