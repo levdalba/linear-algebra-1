@@ -1,6 +1,6 @@
 answer = {
-    'task1': 1,
-    'task2': 2,
-    'task3': 3,
-    'task4': 4
+    'task1': 6.,
+    'task2': 5.,
+    'task3': 2.,
+    'task4': 6.
 }
