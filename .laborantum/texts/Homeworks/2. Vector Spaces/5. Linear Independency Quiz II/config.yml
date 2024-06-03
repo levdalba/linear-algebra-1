@@ -1,0 +1,54 @@
+type: choose_any
+header: |
+  Quiz
+text: |
+  Select matrices with linearly independent system'
+  of rows
+shuffle: true
+max_score: 1
+quiz:
+  variants:
+  - text: |
+      $\begin{bmatrix}
+        1 & 2 \\
+        3 & 6
+      \end{bmatrix}$
+    is_correct: false
+  - text: |
+      $\begin{bmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6 \\
+        7 & 8 & 9
+      \end{bmatrix}$
+    is_correct: false 
+  - text: |
+      $\begin{bmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6
+      \end{bmatrix}$  
+    is_correct: true
+  - text: |
+      $\begin{bmatrix}
+        1 & 0 & 1 & 0 \\
+        1 & 1 & 1 & 1
+      \end{bmatrix}$
+    is_correct: true
+  - text: |
+      $\begin{bmatrix}
+        123 & 512 \\
+        783 & 98 \\
+        923 & 205
+      \end{bmatrix}$
+    is_correct: false
+  - text: |
+      $\begin{bmatrix}
+        0 & 0 & 0 & 0
+      \end{bmatrix}$
+    is_correct: false
+  - text: |
+      $\begin{bmatrix}
+        1 & 2 & 3 & 4 \\
+        0 & 0 & 0 & 0
+      \end{bmatrix}$
+    is_correct: false
+

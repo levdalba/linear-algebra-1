@@ -1,0 +1,78 @@
+type: choose_any
+header: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+  - text: |
+      If a system of vectors 
+      $\left\{\mathbf x_1, \dots, \mathbf x_N \right\}$ 
+      is linearly dependent, then every of these vectors
+      can be represented as a linear combination of the other vectors from this 
+      set,
+      $$\forall l \ \mathbf x_l = \sum_{\substack{k=1 \\ k \neq l}}^N a_k \mathbf x_k$$
+    is_correct: false
+  - text: |
+      If a system of vectors 
+      $\left\{\mathbf x_1, \dots, \mathbf x_N \right\}$ 
+      is linearly dependent, then one of these vectors
+      can be represented as a linear combination of the other 
+      vectors from this set,
+      $$\exists l \ \mathbf x_l = \sum_{\substack{k=1 \\ k \neq l}}^N a_k \mathbf x_k$$
+    is_correct: true
+  - text: |
+      If a system of vectors 
+      $\left\{\mathbf x_1, \dots, \mathbf x_N \right\}$ 
+      is linearly dependent:
+      $$\sum_{k=1}^N a_k \mathbf x_k = \mathbf 0,$$
+      and $\forall k, a_k \neq 0$,
+      then every of these vectors
+      can be represented as a linear combination of the other vectors from this 
+      set,
+      $$\forall l \ \mathbf x_l = \sum_{\substack{k=1 \\ k \neq l}}^N a_k \mathbf x_k$$
+    is_correct: true
+  - text: |
+      If a system of vectors $\left\{\mathbf x_1, \dots, \mathbf x_N\right\}$ 
+      from some vector space $\mathbb R^M$ is linearly dependent, that means 
+      that
+      in this space there does not exist any other vector that is linearly 
+      independent from this set of vectors:
+      $$\forall \mathbf y \in \mathbb R^M, \exists \mathbf a \in \mathbb R^N: 
+      \mathbf y = \sum_{k=1}^N a_k \mathbf x_k$$
+    is_correct: false
+  - text: |
+      If a system of vectors $\left\{\mathbf x_1, \dots \mathbf x_N\right\}$ 
+      is linearly dependent, any vector from their span
+      has only one set of coefficients for these vectors:
+      $$\exists! \mathbf a \in \mathbb R^N: \ \sum_{k=1}^N a_k \mathbf x_k$$
+    is_correct: false
+  - text: |
+      If a system of vectors $\left\{\mathbf x_1, \dots \mathbf x_N\right\}$ 
+      from some space $\mathbb R^N$ is 
+      linearly independent, then their span covers all the space:
+      $$\forall \mathbf y \in \mathbb R^N \Rightarrow \mathbf y \in 
+      Span(\mathbf x_1, \dots, \mathbf x_N)$$
+    is_correct: true
+  - text: |
+      If a system of vectors 
+      $\left\{\mathbf x_1, \dots \mathbf x_N\right\}$ from some space 
+      $\mathbb R^N$ is linearly dependent, then the span of these vectors
+      covers only some part of the space (not all the space)
+      $$\exists \mathbf y \in \mathbb R^N \Rightarrow 
+      \mathbf y \notin Span(\mathbf x_1, \dots, \mathbf x_N)$$
+    is_correct: true
+  - text: |
+      A system of vectors 
+      $\left\{\mathbf x_1, \dots, \mathbf x_N\right\}$ 
+      is called linearly dependent if 
+      $$\exists \mathbf a \in \mathbb R^N \quad \sum_{k=1}^N a_k \mathbf
+      x_k = \mathbf 0$$
+    is_correct: false
+  - text: |
+      A system of vectors $\left\{\mathbf x_1, \dots, \mathbf x_N\right\}$
+      is called linearly
+      dependent if 
+      $$\exists \mathbf a \in \mathbb R^N, \mathbf a \neq \mathbf 0 \quad
+      \sum_{k=1}^N a_k \mathbf x_k = \mathbf 0$$
+    is_correct: true
