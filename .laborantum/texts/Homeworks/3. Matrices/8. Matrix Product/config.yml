@@ -1,0 +1,12 @@
+type: order_cards
+header: ''
+text: ''
+shuffle: true
+grade_all: true
+max_score: 1
+quiz:
+  variants:
+    - text: $CD$
+    - text: $AB$
+    - text: $DE$
+    - text: $BC$

@@ -1,0 +1,7 @@
+type: code
+max_score: 1
+code: 
+  - .laborantum/texts/Homeworks/3. Matrices/6. Matrix Dot-Product Numpy/task.ipynb
+run_test:
+  - >
+    ipython .laborantum/utils/python_struct_checker.py --
