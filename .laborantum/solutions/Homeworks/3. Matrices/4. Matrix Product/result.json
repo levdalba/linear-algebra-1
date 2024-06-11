@@ -1,0 +1,1 @@
+{"task1": {"__ndarray__": [[30, 36, 42], [66, 81, 96], [102, 126, 150]], "dtype": "int64", "shape": [3, 3], "Corder": true}, "task2": {"__ndarray__": [[37, 54], [81, 118]], "dtype": "int64", "shape": [2, 2], "Corder": true}, "task3": {"__ndarray__": [215, 450], "dtype": "int64", "shape": [2]}}

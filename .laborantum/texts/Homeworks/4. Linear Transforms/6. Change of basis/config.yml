@@ -1,0 +1,6 @@
+type: code
+max_score: 1
+code:
+  - .laborantum/texts/Homeworks/4. Linear Transforms/6. Change of basis/task.ipynb
+run_test:
+  - ipython .laborantum/utils/python_struct_checker.py --
