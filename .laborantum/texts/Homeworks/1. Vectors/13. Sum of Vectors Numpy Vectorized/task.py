@@ -28,14 +28,16 @@ get_ipython().system('{sys.executable} -m pip -q install --user numpy json-trick
 
 import json_tricks
 
-path = Path('.laborantum/texts/Homeworks/1. Vectors/13. Sum of Vectors Numpy Vectorized')
+path = Path(
+    ".laborantum/texts/Homeworks/1. Vectors/13. Sum of Vectors Numpy Vectorized"
+)
 
 
 # In[3]:
 
 
-debug_cases = json_tricks.load(str(path / 'testcases' / 'debug_cases.json'))
-public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
+debug_cases = json_tricks.load(str(path / "testcases" / "debug_cases.json"))
+public_cases = json_tricks.load(str(path / "testcases" / "public_cases.json"))
 
 
 # In[4]:
@@ -43,7 +45,9 @@ public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
 
 import numpy as np
 
+
 def vector_sum(x, y):
+    ## YOUR CODE HERE
     return x + y
 
 
@@ -57,5 +61,5 @@ start = time.time()
 debug_result = [vector_sum(**x) for x in debug_cases]
 answer = [vector_sum(**x) for x in public_cases]
 
-print(time.time() - start, '<- Elapsed time')
+print(time.time() - start, "<- Elapsed time")
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[9]:
+# In[5]:
 
 
 get_ipython().run_line_magic('reload_ext', 'autoreload')
@@ -23,69 +23,50 @@ os.chdir(path)
 get_ipython().system('{sys.executable} -m pip -q install --user numpy json-tricks torch jupyter nbconvert')
 
 
-# In[8]:
-
-
-import numpy
-import json_tricks
-import os
-
-numpy.random.seed(42)
-
-debug_cases = []
-for index in range(20):
-    B_shape = numpy.random.randint(1, 10, size=[2])
-    B_shape.sort(axis=0)
-    B_shape = B_shape[::-1]
-    B = numpy.random.randint(-5, 5, size=B_shape)
-    x_shape = B_shape[-1:]
-    x = numpy.random.randint(-5, 5, size=x_shape)
-    # if numpy.random.randn(1) < 0:
-        # A[:, -1] = A[:, :-1] @ numpy.random.randint(-5, 5, size=[A.shape[-1] - 1])
-    debug_cases.append({'B': B, 'x': x})
-
-os.makedirs('testcases', exist_ok=True)
-with open('testcases/debug_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(debug_cases))
-
-public_cases = []
-for index in range(100):
-    B_shape = numpy.random.randint(1, 10, size=[2])
-    B_shape.sort(axis=0)
-    B_shape = B_shape[::-1]
-    B = numpy.random.randint(-5, 5, size=B_shape)
-    x_shape = B_shape[-1:]
-    x = numpy.random.randint(x_shape)
-    
-    public_cases.append({'B': B, 'x': x})
-
-with open('testcases/public_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(public_cases))
-
-
-# In[10]:
+# In[6]:
 
 
 import json_tricks
 
-path = Path('.laborantum/texts/Homeworks/2. Vector Spaces/12. Covariant Coordinates Numpy I')
+path = Path(
+    ".laborantum/texts/Homeworks/2. Vector Spaces/12. Covariant Coordinates Numpy I"
+)
 
-debug_cases = json_tricks.load(
-    str(path / 'testcases' / 'debug_cases.json'))
-public_cases = json_tricks.load(
-    str(path / 'testcases' / 'public_cases.json'))
+debug_cases = json_tricks.load(str(path / "testcases" / "debug_cases.json"))
+public_cases = json_tricks.load(str(path / "testcases" / "public_cases.json"))
 
 
-# In[11]:
+# In[1]:
 
 
 import numpy as np
 
+
 def get_covariant_coordinates(B, x):
-    return (B * x.reshape([1, -1])).sum(axis=1)
+    ## YOUR CODE HERE
+    B = np.array(B)
+    x = np.array(x)
+
+    # Check dimensions
+    print(f"B shape: {B.shape}")
+    print(f"x shape: {x.shape}")
+
+    assert B.ndim == 2, "B must be a 2D numpy array"
+    assert x.ndim == 1, "x must be a 1D numpy array"
+
+    # Check if the number of rows in B matches the size of x
+    if B.shape[0] != x.size:
+        raise ValueError(
+            f"Incompatible dimensions: B has {B.shape[0]} rows but x has size {x.size}"
+        )
+
+    # Solve the linear system B * coords = x to find the coordinates using lstsq
+    coords, residuals, rank, s = np.linalg.lstsq(B, x, rcond=None)
+
+    return coords
 
 
-# In[12]:
+# In[2]:
 
 
 import time
@@ -95,11 +76,5 @@ start = time.time()
 debug_result = [get_covariant_coordinates(**x) for x in debug_cases]
 answer = [get_covariant_coordinates(**x) for x in public_cases]
 
-print(time.time() - start, '<- Elapsed time')
-
-
-# In[ ]:
-
-
-
+print(time.time() - start, "<- Elapsed time")
 

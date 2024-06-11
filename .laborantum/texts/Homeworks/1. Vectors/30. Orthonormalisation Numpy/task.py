@@ -28,14 +28,14 @@ get_ipython().system('{sys.executable} -m pip -q install --user numpy json-trick
 
 import json_tricks
 
-path = Path('.laborantum/texts/Homeworks/1. Vectors/30. Orthonormalisation Numpy')
+path = Path(".laborantum/texts/Homeworks/1. Vectors/30. Orthonormalisation Numpy")
 
 
 # In[10]:
 
 
-debug_cases = json_tricks.load(str(path / 'testcases' / 'debug_cases.json'))
-public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
+debug_cases = json_tricks.load(str(path / "testcases" / "debug_cases.json"))
+public_cases = json_tricks.load(str(path / "testcases" / "public_cases.json"))
 
 
 # In[11]:
@@ -43,15 +43,15 @@ public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
 
 import numpy as np
 
+
 def orthonormalisation(vecs):
+    ## YOUR CODE HERE
     res = []
-    for vec in vecs:
-        for other in res:
-            vec = vec - (vec * other).sum() / (other * other).sum() * other
-        if np.sqrt((vec * vec).sum()) < 1.0e-4:
-            continue
-        res.append(vec / np.sqrt((vec * vec).sum()))
-    return res
+    for v in vecs:
+        w = v - sum(np.dot(v, u) * u for u in res)
+        if np.linalg.norm(w) > 1e-4:
+            res.append(w / np.linalg.norm(w))
+    return np.array(res)
 
 
 # In[12]:
@@ -99,13 +99,13 @@ start = time.time()
 debug_result = [orthonormalisation(**x) for x in debug_cases]
 answer = [orthonormalisation(**x) for x in public_cases]
 
-print(time.time() - start, '<- Elapsed time')
+print(time.time() - start, "<- Elapsed time")
 
 
 # In[16]:
 
 
-json_tricks.dump(answer, 'test.json')
+json_tricks.dump(answer, "test.json")
 
 
 # In[ ]:

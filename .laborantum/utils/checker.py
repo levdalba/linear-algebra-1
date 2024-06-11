@@ -3,7 +3,9 @@ import math
 import numbers
 import numpy
 import os
-import torch
+import sys
+
+# import torch
 
 from json_tricks import load, dump
 from copy import deepcopy
@@ -13,9 +15,9 @@ from nbconvert.exporters import PythonExporter
 
 def check_condition(condition, info, successes, failures, test_weight):
     if condition:
-        successes.append((info, 'PASSED', test_weight))
+        successes.append((info, "PASSED", test_weight))
     else:
-        failures.append((info, 'FAILED', test_weight))
+        failures.append((info, "FAILED", test_weight))
 
 
 def get(collection, key):
@@ -29,12 +31,8 @@ def get(collection, key):
     return res
 
 
-def run_checks(
-        recieved, 
-        expected, 
-        test_info='',
-        eps=1.0e-4):
-    
+def run_checks(recieved, expected, test_info="", eps=1.0e-4):
+
     report = []
 
     if isinstance(expected, dict):
@@ -44,11 +42,10 @@ def run_checks(
             new_expected = get(expected, key)
             new_recieved = get(recieved, key)
 
-            test_info_new = test_info + ' -> ' + str(key)
+            test_info_new = test_info + " -> " + str(key)
             report.extend(run_checks(new_recieved, new_expected, test_info_new))
         return report
-        
-    
+
     if isinstance(expected, list):
         report = []
 
@@ -56,101 +53,104 @@ def run_checks(
             new_expected = get(expected, index)
             new_recieved = get(recieved, index)
 
-            test_info_new = test_info + ' -> ' + str(index)
+            test_info_new = test_info + " -> " + str(index)
             report.extend(run_checks(new_recieved, new_expected, test_info_new))
         return report
-
 
     if isinstance(expected, numbers.Number):
         try:
             misfit = math.fabs(expected - recieved)
-            check = (misfit < eps)
-            explanation = 'OK'
+            check = misfit < eps
+            explanation = "OK"
             if not check:
-                explanation = '''
+                explanation = """
                     FAILED: Incorrect answer. Misfit is {},'
-                    that is larger than eps ({})'''.format(misfit, eps)
-            return [{'name': test_info, 'ok': check, 'status': explanation}]
+                    that is larger than eps ({})""".format(
+                    misfit, eps
+                )
+            return [{"name": test_info, "ok": check, "status": explanation}]
 
         except:
-            explanation = 'FAILED: The answer is not found or is of incorrect Type'
-            return [{'name': test_info, 'ok': False, 'status': explanation}]
-
+            explanation = "FAILED: The answer is not found or is of incorrect Type"
+            return [{"name": test_info, "ok": False, "status": explanation}]
 
     if isinstance(expected, numpy.ndarray):
+        if not isinstance(recieved, numpy.ndarray):
+            explanation = "FAILED: Numpy array is expected"
+            return [{"name": test_info, "ok": False, "status": explanation}]
 
         # Checking if the answer exists
         if recieved is None:
-            explanation = 'FAILED. Item is not found'
-            return [{'name': test_info, 'ok': False, 'status': explanation}]
-        
+            explanation = "FAILED. Item is not found"
+            return [{"name": test_info, "ok": False, "status": explanation}]
+
         # Checking if Numpy array is empty
         if expected.size == 0:
-            condition = (recieved.size == 0)
+            condition = recieved.size == 0
             if not condition:
                 explanation = (
-                    'FAILED: expected an empty tensor, got non-empty one:\n' +
-                    'Expected size: {}\n'.format(str(expected.size)) +
-                    'Recieved size: {}\n'.format(str(recieved.size))
+                    "FAILED: expected an empty tensor, got non-empty one:\n"
+                    + "Expected size: {}\n".format(str(expected.size))
+                    + "Recieved size: {}\n".format(str(recieved.size))
                 )
-                return [{'name': test_info, 'ok': False, 'status': explanation}]
-
+                return [{"name": test_info, "ok": False, "status": explanation}]
         # Checking if Numpy arrays have the same dtype
         if recieved.dtype != expected.dtype:
             explanation = (
-                'FAILED: data types do not match:\n' +
-                'Expected type: {}'.format(expected.dtype) + '\n' +
-                'Recieved type: {}'.format(recieved.dtype)
+                "FAILED: data types do not match:\n"
+                + "Expected type: {}".format(expected.dtype)
+                + "\n"
+                + "Recieved type: {}".format(recieved.dtype)
             )
-            return [{'name': test_info, 'ok': False, 'status': explanation}]
-        
+            return [{"name": test_info, "ok": False, "status": explanation}]
+
         # Checking if the arrays have the same number of dimensions
         if len(expected.shape) != len(recieved.shape):
             explanation = (
-                'FAILED: tensor dimensionalities do not match:\n' +
-                'Expected shape: {}\n'.format(expected.shape) +
-                'Recieved shape: {}'.format(recieved.shape)
+                "FAILED: tensor dimensionalities do not match:\n"
+                + "Expected shape: {}\n".format(expected.shape)
+                + "Recieved shape: {}".format(recieved.shape)
             )
-            return [{'name': test_info, 'ok': False, 'status': explanation}]
-        
+            return [{"name": test_info, "ok": False, "status": explanation}]
+
         # Checking if the arrays have the same shape
         if expected.shape != recieved.shape:
             explanation = (
-                'FAILED: tensor shapes do not match:\n' +
-                'Expected shape: {}\n'.format(expected.shape) +
-                'Recieved shape: {}'.format(recieved.shape)
+                "FAILED: tensor shapes do not match:\n"
+                + "Expected shape: {}\n".format(expected.shape)
+                + "Recieved shape: {}".format(recieved.shape)
             )
-            return [{'name': test_info, 'ok': False, 'status': explanation}]
+            return [{"name": test_info, "ok": False, "status": explanation}]
 
         # Checking the arrays that have the exact types
         if recieved.dtype in {numpy.bool_, numpy.byte, numpy.ubyte}:
             if not (recieved == expected).all():
                 explanation = (
-                    'FAILED: tensor shapes do not match:\n' +
-                    'Expected shape: {}\n'.format(expected.shape) +
-                    'Recieved shape: {}'.format(recieved.shape)
+                    "FAILED: tensor shapes do not match:\n"
+                    + "Expected shape: {}\n".format(expected.shape)
+                    + "Recieved shape: {}".format(recieved.shape)
                 )
-                return [{'name': test_info, 'ok': False, 'status': explanation}]
-        
+                return [{"name": test_info, "ok": False, "status": explanation}]
+
         # Checking inexact typed arrays
         else:
             mismatch = numpy.abs((recieved - expected))
             avg_mismatch = mismatch.mean()
             if not avg_mismatch < eps:
                 explanation = (
-                    'FAILED: answers do not match:\n' +
-                    'Maximal average mismatch: {}\n'.format(str(eps)) +
-                    'Recieved average mismatch: {}'.format(str(avg_mismatch))
+                    "FAILED: answers do not match:\n"
+                    + "Maximal average mismatch: {}\n".format(str(eps))
+                    + "Recieved average mismatch: {}".format(str(avg_mismatch))
                 )
-                return [{'name': test_info, 'ok': False, 'status': explanation}]
-            
-        return [{'name': test_info, 'ok': True, 'status': 'OK'}]
+                return [{"name": test_info, "ok": False, "status": explanation}]
 
-    if isinstance(expected, torch.Tensor):
-        return run_checks(
-            recieved.detach().numpy(), 
-            expected.detach().numpy(),
-            eps=eps)
+        return [{"name": test_info, "ok": True, "status": "OK"}]
+
+    # if isinstance(expected, torch.Tensor):
+    #     return run_checks(
+    #         recieved.detach().numpy(),
+    #         expected.detach().numpy(),
+    #         eps=eps)
 
 
 def replace_last_entrance(path, to_replace, replacement):
@@ -162,43 +162,45 @@ def replace_last_entrance(path, to_replace, replacement):
     return Path("/".join(src_parts))
 
 
-def get_teacher_path(task_path, fname='result.json'):
-    teacher_path = replace_last_entrance(
-        task_path, 'texts', 'solutions') / fname
+def get_teacher_path(task_path, fname="result.json"):
+    teacher_path = replace_last_entrance(task_path, "texts", "solutions") / fname
     return teacher_path
 
 
-def get_student_path(task_path, fname='result.json'):
-    student_path = replace_last_entrance(
-        task_path, 'texts', 'answers') / fname
+def get_student_path(task_path, fname="result.json"):
+    student_path = replace_last_entrance(task_path, "texts", "answers") / fname
     return student_path
 
 
-def get_report_path(task_path, fname='report.json'):
-    report_path = replace_last_entrance(
-        task_path, 'texts', 'reports') / fname
+def get_report_path(task_path, fname="report.json"):
+    report_path = replace_last_entrance(task_path, "texts", "reports") / fname
     return report_path
 
 
 def check_json(task_path):
+    print("In Check JSON", file=sys.stderr)
     teacher_path = get_teacher_path(task_path)
     student_path = get_student_path(task_path)
     report_path = get_report_path(task_path)
 
+    print("1", file=sys.stderr)
     student_state = load(str(student_path))
     teacher_state = load(str(teacher_path))
 
-    report = run_checks(student_state, teacher_state, test_info='root')
-    report = {'test_cases': report}
+    print("2", file=sys.stderr)
+    report = run_checks(student_state, teacher_state, test_info="root")
+    report = {"test_cases": report}
 
+    print("3", file=sys.stderr)
     report_path.parent.mkdir(parents=True, exist_ok=True)
 
+    print(str(report_path.parent), file=sys.stderr)
     dump(report, str(report_path))
 
 
 def write_result(result, task_path):
     student_path = get_student_path(task_path)
-    student_path.split('/')
+    student_path.split("/")
     dump(result, student_path)
 
 
@@ -207,21 +209,20 @@ def ipynb_to_py(source, target):
     source, meta = py_exporter.from_filename(source)
 
     Path(target).unlink(missing_ok=True)
-    
-    with open(target, 'wb') as fout:
-        fout.write(source.encode('utf-8'))
+
+    with open(target, "wb") as fout:
+        fout.write(source.encode("utf-8"))
 
 
-if __name__ == '__main__':
+if "name" == "main":
     parser = argparse.ArgumentParser(
-                    prog='ProgramName',
-                    description='What the program does',
-                    epilog='Text at the bottom of help')
-    
-    parser.add_argument('-t', '--task', 
-                        help="Task path", 
-                        type=Path)
-    
+        prog="ProgramName",
+        description="What the program does",
+        epilog="Text at the bottom of help",
+    )
+
+    parser.add_argument("-t", "--task", help="Task path", type=Path)
+
     args = parser.parse_args()
 
     check_json(args.task)

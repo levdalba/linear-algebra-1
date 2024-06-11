@@ -20,7 +20,7 @@ if index > 0:
 
 os.chdir(path)
 
-get_ipython().system('{sys.executable} -m pip -q install --user numpy json-tricks torch jupyter nbconvert')
+get_ipython().system('{sys.executable} -m pip -q install numpy json-tricks torch jupyter nbconvert')
 
 
 # In[4]:
@@ -28,61 +28,69 @@ get_ipython().system('{sys.executable} -m pip -q install --user numpy json-trick
 
 import json_tricks
 
-path = Path('.laborantum/texts/Homeworks/1. Vectors/33. Exercise Vectors 3')
+path = Path(".laborantum/texts/Homeworks/1. Vectors/33. Exercise Vectors 3")
 
 
 # In[5]:
 
 
-debug_cases = json_tricks.load(str(path / 'testcases' / 'debug_cases.json'))
-public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
+debug_cases = json_tricks.load(str(path / "testcases" / "debug_cases.json"))
+public_cases = json_tricks.load(str(path / "testcases" / "public_cases.json"))
 
 
-# In[15]:
+# In[6]:
 
 
 import numpy as np
 import numpy.typing as npt
 from typing import Dict
 
-def vector_operations(x, y):
 
-    a, b = x, y
+def vector_operations(a, b):
+    ## YOUR CODE HERE
 
-    dot_ab = (a * b).sum()
+    expression = 2 * a + b
 
-    len_a = np.sqrt((a * a).sum())
-    len_b = np.sqrt((b * b).sum())
+    # Calculate the dot product ⟨a, b⟩
+    dot_prod = np.dot(a, b)
 
-    angle = np.arccos(dot_ab / len_a / len_b)
+    # Calculate the magnitudes |a| and |b|
+    length_a = np.linalg.norm(a)
+    length_b = np.linalg.norm(b)
 
-    dir_a = a / len_a
-    dir_b = b / len_b
+    # Calculate the angle between a and b in radians
+    angle = np.arccos(dot_prod / (length_a * length_b))
 
-    a_proj_b = dot_ab / len_b ** 2
-    b_proj_a = dot_ab / len_a ** 2
+    # Find directions of these vectors
+    dir_a = a / length_a
+    dir_b = b / length_b
 
+    # Find collinear component (projection)
+    a_proj_b = (dot_prod / np.dot(b, b)) * b
+    b_proj_a = (dot_prod / np.dot(a, a)) * a
+
+    # Find orthogonal component
     a_orth_b = a - a_proj_b
     b_orth_a = b - b_proj_a
 
     answer = {
-        'expression': 2 * a + b,
-        'dot_prod': dot_ab,
-        'length_a': len_a,
-        'length_b': len_b,
-        'angle': angle,
-        'dir_a': dir_a,
-        'dir_b': dir_b,
-        'a_proj_b': a_proj_b,
-        'b_proj_a': b_proj_a,
-        'a_orth_b': a_orth_b,
-        'b_orth_a': b_orth_a
+        "expression": expression.tolist(),
+        "dot_prod": dot_prod,
+        "length_a": length_a,
+        "length_b": length_b,
+        "angle": angle,
+        "dir_a": dir_a.tolist(),
+        "dir_b": dir_b.tolist(),
+        "a_proj_b": a_proj_b.tolist(),
+        "b_proj_a": b_proj_a.tolist(),
+        "a_orth_b": a_orth_b.tolist(),
+        "b_orth_a": b_orth_a.tolist(),
     }
 
     return answer
 
 
-# In[16]:
+# In[7]:
 
 
 import time
@@ -92,11 +100,5 @@ start = time.time()
 debug_result = [vector_operations(**x) for x in debug_cases]
 answer = [vector_operations(**x) for x in public_cases]
 
-print(time.time() - start, '<- Elapsed time')
-
-
-# In[ ]:
-
-
-
+print(time.time() - start, "<- Elapsed time")
 
