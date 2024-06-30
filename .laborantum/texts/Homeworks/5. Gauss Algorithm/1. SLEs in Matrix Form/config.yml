@@ -1,0 +1,6 @@
+type: code
+max_score: 24
+code:
+  - .laborantum/texts/Homeworks/5. Gauss Algorithm/1. SLEs in Matrix Form/task.py
+run_test:
+  - python .laborantum/utils/python_struct_checker.py

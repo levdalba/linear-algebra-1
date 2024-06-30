@@ -1,0 +1,8 @@
+order:
+  - 1. SLEs in Matrix Form
+  - 1. Gauss Elimination Step 1
+  - 2. Gauss Elimination Step 2
+  - 3. Solving Square SLE
+  - 4. Matrix Inversion
+  - 5. PLU Decomposition
+  - 6. QR Decomposition
