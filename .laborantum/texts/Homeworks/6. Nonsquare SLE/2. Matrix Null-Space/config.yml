@@ -1,5 +1,5 @@
 type: code
-max_score: 1
+max_score: 5
 code:
   - .laborantum/texts/Homeworks/6. Nonsquare SLE/2. Matrix Null-Space/task.ipynb
   - code/find_kernel.py

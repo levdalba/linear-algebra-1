@@ -1,5 +1,5 @@
 type: code
-max_score: 1
+max_score: 5
 code:
   - .laborantum/texts/Homeworks/5. Gauss Algorithm/5. PLU Decomposition/task.ipynb
   - code/plu_decomposition.py

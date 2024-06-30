@@ -1,5 +1,5 @@
 type: code
-max_score: 1
+max_score: 15
 code:
   - .laborantum/texts/Homeworks/5. Gauss Algorithm/2. Gauss Elimination Step 2/task.ipynb
   - code/gauss_elimination_2.py
