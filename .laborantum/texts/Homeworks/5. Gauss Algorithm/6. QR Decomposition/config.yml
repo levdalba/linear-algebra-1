@@ -1,0 +1,7 @@
+type: code
+max_score: 5
+code:
+  - .laborantum/texts/Homeworks/5. Gauss Algorithm/6. QR Decomposition/task.ipynb
+  - code/qr_decomposition.py
+run_test:
+  - ipython .laborantum/utils/python_struct_checker.py --

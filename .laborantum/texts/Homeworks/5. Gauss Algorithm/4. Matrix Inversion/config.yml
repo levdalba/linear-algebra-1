@@ -1,0 +1,7 @@
+type: code
+max_score: 5
+code:
+  - .laborantum/texts/Homeworks/5. Gauss Algorithm/4. Matrix Inversion/task.ipynb
+  - code/invert_matrix.py
+run_test:
+  - ipython .laborantum/utils/python_struct_checker.py --

@@ -1,0 +1,7 @@
+type: code
+max_score: 5
+code:
+  - .laborantum/texts/Homeworks/5. Gauss Algorithm/3. Solving Square SLE/task.ipynb
+  - code/find_solution.py
+run_test:
+  - ipython .laborantum/utils/python_struct_checker.py --

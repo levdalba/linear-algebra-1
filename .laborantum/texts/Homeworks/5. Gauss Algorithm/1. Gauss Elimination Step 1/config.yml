@@ -1,0 +1,7 @@
+type: code
+max_score: 15
+code:
+  - .laborantum/texts/Homeworks/5. Gauss Algorithm/1. Gauss Elimination Step 1/task.ipynb
+  - code/gauss_elimination_1.py
+run_test:
+  - ipython .laborantum/utils/python_struct_checker.py -- 

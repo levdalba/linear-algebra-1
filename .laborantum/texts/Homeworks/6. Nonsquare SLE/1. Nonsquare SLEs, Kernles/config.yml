@@ -1,0 +1,6 @@
+type: code
+max_score: 20
+code:
+  - .laborantum/texts/Homeworks/6. Nonsquare SLE/1. Nonsquare SLEs, Kernles/task.py
+run_test:
+  - python .laborantum/utils/python_struct_checker.py
