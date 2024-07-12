@@ -62,10 +62,7 @@ public_cases = json_tricks.load(
 import numpy as np
 
 def rotation_matrix(theta):
-    res = np.array([
-        [np.cos(theta), -np.sin(theta)],
-        [np.sin(theta), np.cos(theta)]
-    ])
+    res = np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]])
     return res
 
 

@@ -12,69 +12,6 @@ sys.path.append('../../../../../code/')
 sys.path.append('code')
 
 
-# In[2]:
-
-
-import numpy
-import json_tricks
-import os
-
-numpy.random.seed(42)
-
-debug_cases = []
-for index in range(20):
-    A_shape = numpy.random.randint(1, 10, size=[2])
-    
-    A_shape[1] = A_shape[0]
-
-    A = numpy.random.randint(-5, 5, size=A_shape).astype(float)
-
-    A_low = numpy.tril(A)
-    numpy.fill_diagonal(A_low, 1.0)
-    A_up = numpy.triu(A)
-    numpy.fill_diagonal(A_up, 1.0)
-    A = A_low @ A_up
-
-    # print(A_low)
-    # print(A_up)
-
-    # print(numpy.linalg.det(A_low), numpy.linalg.det(A_up))
-    # print(numpy.linalg.det(A))
-
-
-    debug_cases.append({'A': A})
-
-os.makedirs('testcases', exist_ok=True)
-with open('testcases/debug_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(debug_cases))
-
-public_cases = []
-for index in range(100):
-    A_shape = numpy.random.randint(1, 100, size=[2])
-    
-    A_shape[1] = A_shape[0]
-
-    # A = numpy.random.randn(*A_shape) * 
-    A = numpy.random.randn(*A_shape) * 0.5
-    # print(A.shape)
-
-    A_low = numpy.tril(A)
-    numpy.fill_diagonal(A_low, 1.0)
-    A_up = numpy.triu(A)
-    numpy.fill_diagonal(A_up, 1.0)
-    A = A_low @ A_up
-
-    # print(A)
-
-    # print(numpy.linalg.det(A_low), numpy.linalg.det(A_up))
-    # print(numpy.linalg.det(A))
-
-    public_cases.append({'A': A})
-
-with open('testcases/public_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(public_cases))
-
-
 # In[3]:
 
 
@@ -118,10 +55,7 @@ import time
 
 start = time.time()
 
-print("Debug")
 debug_result = [plu_decomposition(**x) for x in debug_cases]
-
-print("Public")
 answer = [plu_decomposition(**x) for x in public_cases]
 
 print(time.time() - start, '<- Elapsed time')

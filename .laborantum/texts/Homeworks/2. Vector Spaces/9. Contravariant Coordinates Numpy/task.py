@@ -49,7 +49,6 @@ def vectors_from_contravariant_coords(B, C):
     if B.shape[1] != C.shape[1]:
         raise ValueError("Shapes are not aligned for matrix multiplication")
 
-    # Compute the result using element-wise multiplication and summation
     V = np.einsum("ij,ik->kj", C, B)
 
     return V

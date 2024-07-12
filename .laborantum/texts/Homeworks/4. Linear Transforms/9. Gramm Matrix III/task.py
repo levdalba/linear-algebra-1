@@ -1,57 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-import numpy
-import json_tricks
-import os
-
-numpy.random.seed(42)
-
-debug_cases = []
-for index in range(20):
-    B_shape = numpy.random.randint(1, 10, size=[2])
-    B_shape[1] = B_shape[0]
-
-    B_L = numpy.tril(numpy.random.randint(-5, 5, size=B_shape))
-    B_U = numpy.triu(numpy.random.randint(-5, 5, size=B_shape))
-
-    numpy.fill_diagonal(B_L, 1)
-    numpy.fill_diagonal(B_U, 1)
-
-    B = B_L @ B_U
-
-    x = numpy.random.randint(-5, 5, size=[B_shape[0]])
-    y = numpy.random.randint(-5, 5, size=[B_shape[0]])
-    debug_cases.append({'B': B, 'x': x, 'y': y})
-
-os.makedirs('testcases', exist_ok=True)
-with open('testcases/debug_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(debug_cases))
-
-public_cases = []
-for index in range(20):
-    B_shape = numpy.random.randint(1, 10, size=[2])
-    B_shape[1] = B_shape[0]
-
-    B_L = numpy.tril(numpy.random.randn(*B_shape))
-    B_U = numpy.triu(numpy.random.randn(*B_shape))
-
-    numpy.fill_diagonal(B_L, 1)
-    numpy.fill_diagonal(B_U, 1)
-
-    B = B_L @ B_U
-
-    x = numpy.random.randint(-5, 5, size=[B_shape[0]])
-    y = numpy.random.randint(-5, 5, size=[B_shape[0]])
-    public_cases.append({'B': B, 'x': x, 'y': y})
-
-with open('testcases/public_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(public_cases))
-
-
 # In[2]:
 
 
@@ -85,10 +34,10 @@ public_cases = json_tricks.load(
 
 import numpy as np
 
-def contra_to_co(B, x, y):
-    G = B @ B.T
+def scalar_product(B, x, y):
+   G = B @ B.T
 
-    return y.T @ np.linalg.inv(G) @ x
+   return y.T @ np.linalg.inv(G) @ x
 
 
 # In[4]:
@@ -98,8 +47,8 @@ import time
 
 start = time.time()
 
-debug_result = [contra_to_co(**x) for x in debug_cases]
-answer = [contra_to_co(**x) for x in public_cases]
+debug_result = [scalar_product(**x) for x in debug_cases]
+answer = [scalar_product(**x) for x in public_cases]
 
 print(time.time() - start, '<- Elapsed time')
 

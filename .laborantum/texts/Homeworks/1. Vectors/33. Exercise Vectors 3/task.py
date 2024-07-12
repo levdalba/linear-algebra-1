@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[2]:
 
 
 get_ipython().run_line_magic('reload_ext', 'autoreload')
@@ -46,51 +46,41 @@ import numpy.typing as npt
 from typing import Dict
 
 
-def vector_operations(a, b):
-    ## YOUR CODE HERE
-
-    expression = 2 * a + b
-
-    # Calculate the dot product ⟨a, b⟩
+def vector_operations(a: npt.NDArray[np.number], b: npt.NDArray[np.number]) -> Dict:
+    exp = (2 * a) + b
     dot_prod = np.dot(a, b)
 
-    # Calculate the magnitudes |a| and |b|
     length_a = np.linalg.norm(a)
     length_b = np.linalg.norm(b)
-
-    # Calculate the angle between a and b in radians
     angle = np.arccos(dot_prod / (length_a * length_b))
 
-    # Find directions of these vectors
     dir_a = a / length_a
     dir_b = b / length_b
 
-    # Find collinear component (projection)
-    a_proj_b = (dot_prod / np.dot(b, b)) * b
-    b_proj_a = (dot_prod / np.dot(a, a)) * a
+    a_proj_b = (np.dot(a, b) / np.linalg.norm(b) ** 2) * b
+    b_proj_a = (np.dot(b, a) / np.linalg.norm(a) ** 2) * a
 
-    # Find orthogonal component
     a_orth_b = a - a_proj_b
     b_orth_a = b - b_proj_a
 
     answer = {
-        "expression": expression.tolist(),
+        "expression": exp,
         "dot_prod": dot_prod,
         "length_a": length_a,
         "length_b": length_b,
         "angle": angle,
-        "dir_a": dir_a.tolist(),
-        "dir_b": dir_b.tolist(),
-        "a_proj_b": a_proj_b.tolist(),
-        "b_proj_a": b_proj_a.tolist(),
-        "a_orth_b": a_orth_b.tolist(),
-        "b_orth_a": b_orth_a.tolist(),
+        "dir_a": dir_a,
+        "dir_b": dir_b,
+        "a_proj_b": a_proj_b,
+        "b_proj_a": b_proj_a,
+        "a_orth_b": a_orth_b,
+        "b_orth_a": b_orth_a,
     }
 
     return answer
 
 
-# In[7]:
+# In[1]:
 
 
 import time

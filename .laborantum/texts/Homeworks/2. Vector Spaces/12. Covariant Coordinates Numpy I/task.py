@@ -43,24 +43,20 @@ import numpy as np
 
 
 def get_covariant_coordinates(B, x):
-    ## YOUR CODE HERE
     B = np.array(B)
     x = np.array(x)
 
-    # Check dimensions
     print(f"B shape: {B.shape}")
     print(f"x shape: {x.shape}")
 
     assert B.ndim == 2, "B must be a 2D numpy array"
     assert x.ndim == 1, "x must be a 1D numpy array"
 
-    # Check if the number of rows in B matches the size of x
     if B.shape[0] != x.size:
         raise ValueError(
             f"Incompatible dimensions: B has {B.shape[0]} rows but x has size {x.size}"
         )
 
-    # Solve the linear system B * coords = x to find the coordinates using lstsq
     coords, residuals, rank, s = np.linalg.lstsq(B, x, rcond=None)
 
     return coords
